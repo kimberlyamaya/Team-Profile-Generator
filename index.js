@@ -7,6 +7,7 @@ const Intern = require('./lib/Intern');
 
 const employeeArr = []
 
+
 // prompt to enter the team manager’s name, employee ID, email address, and office number
 function addManager() {
     return inquirer
@@ -102,7 +103,7 @@ function addEngineer() {
         }
         ])
         .then(function (answers) {
-            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
+            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser, "Engineer")
             employeeArr.push(engineer)
             console.log(employeeArr)
 
@@ -151,7 +152,7 @@ function addIntern() {
         {
         type: "input",
         name: "school",
-        message: "Enter Engineer's School Name"   
+        message: "Enter Intern's School Name"   
         },
         {
         // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
@@ -213,6 +214,7 @@ function writeToFile(employeeArr) {
 
 //
 function managerHTML (manager) {
+    renderEmployee()
     return `
     <div>
       <h2> ${employeeArr[0].name} </h2>
@@ -221,13 +223,32 @@ function managerHTML (manager) {
 }
 
 // function render employee
-// before loop create empty string var
-// start loop on 1
-// in loop if getrole() === "Intern" then 
-// in loop if getrole() === "Engineer" then 
-// create intern html string
-// append intern html to empty setup string
-// return empty string var
+function renderEmployee () {
+    // before loop create empty string var
+    const renderEmployee = ""
+    // start loop on 1
+    for (i = 1; i < employeeArr.length; i++) {
+        // in loop if getrole() === "Engineer" then 
+        if (employeeArr[i].role === "Engineer") {
+            // create engineer html string
+            const renderEngineer = `
+            <div>
+            <h2> ${employeeArr[i].name} </h2>
+            </div>
+            `
+            console.log(`${employeeArr[i].name}`)
+            // append intern html to empty setup string
+            // return empty string var
+            // pass this back through the HTML functions
+        }
+        
+    }
+    // in loop if getrole() === "Intern" then
+    // create intern html string
+    // append intern html to empty setup string
+    // return empty string var
+    // pass this back through the HTML functions
+}
 
 
 function init(employeeArr) {
