@@ -1,21 +1,120 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
-const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern')
 
+const employeeArr = []
 
-function addEmployee() {
+// prompt to enter the team manager’s name, employee ID, email address, and office number
+function addManager() {
     return inquirer
         .prompt([
         {
-        type: 'input',
-        name: 'name',
-        message: 'Enter Employee Name?'
+        type: "input",
+        name: "name",
+        message: "Enter Manager's Name"
+        },
+        {
+        type: "input",
+        name: "id",
+        message: "Enter Manager's Employee ID"
+        },
+        {
+        type: "input",
+        name: "email",
+        message: "Enter Manager's Email Address"
+        },
+        {
+        type: "input",
+        name: "officeNumber",
+        message: "Enter Manager's Office Number"   
+        },
+        {
+        type: "list",
+        name: "addNewMember",
+        message: "What are your next steps?",
+        choices: ["Add an Engineer", "Add an Intern", "Finish building my team"]
         }
         ])
         .then(function (answers) {
-        const newEmployee = new Employee(answers.name);
-        console.log(newEmployee)
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+            employees.push(manager)
+
+        if (answers.addNewMember === "Add an Engineer") {
+            console.log("New Engineer added")
+            // call addEngineer function and
+            // create new engineer with class and push into new employeeArr
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+            employees.push(manager)
+            console.log(employees)
+        }
+
+        // last if
+        if (answers.addNewMember === "Finish building my team") {
+            init(employees)
+        }
+
+        
         })
+
+
+        // presented with a menu with the option to add an engineer or an intern or to finish building my team
 }
 
-addEmployee();
+
+
+
+// engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+
+// intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+
+// finish building my team was selected, the HTML is generated
+// call init function
+
+// generate HTML file
+function writeToFile(employees) {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Team-Profile-Generator</h1>
+
+        ${managerHTML()}
+    </body>
+    </html>`
+
+}
+
+//
+function managerHTML (manager) {
+    return `
+    <div>
+      <h2> ${manager.getName()} </h2>
+    </div>
+    `
+}
+
+// function render employee
+// before loop create empty string var
+// start loop on 1
+// in loop if getrole() === "Intern" then 
+// in loop if getrole() === "Engineer" then 
+// create intern html string
+// append intern html to empty setup string
+// return empty string var
+
+
+function init(employees) {
+    fs.writeFile('/dist/team-profile.html', writeToFile(employees), err => {
+        if (err) throw err;
+        console.log("you did it")
+    })
+}
+
+addManager();
