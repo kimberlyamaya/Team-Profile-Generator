@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -41,7 +40,7 @@ function addManager() {
         }
         ])
         .then(function (answers) {
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber, "Manager")
             employeeArr.push(manager)
             console.log(employeeArr)
 
@@ -163,7 +162,7 @@ function addIntern() {
         }
         ])
         .then(function (answers) {
-            const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+            const intern = new Intern(answers.name, answers.id, answers.email, answers.school, "Intern")
             employeeArr.push(intern)
             console.log(employeeArr)
 
@@ -236,18 +235,26 @@ function renderEmployee () {
             <h2> ${employeeArr[i].name} </h2>
             </div>
             `
-            console.log(`${employeeArr[i].name}`)
+            console.log(`engineer = ${employeeArr[i].name}`)
             // append intern html to empty setup string
             // return empty string var
             // pass this back through the HTML functions
         }
         
+        // in loop if getrole() === "Intern" then
+        if (employeeArr[i].role === "Intern") {
+            // create intern html string
+            const renderIntern = `
+            <div>
+            <h2> ${employeeArr[i].name} </h2>
+            </div>
+            `
+            console.log(`intern = ${employeeArr[i].name}`)
+            // append intern html to empty setup string
+            // return empty string var
+            // pass this back through the HTML functions
+        }
     }
-    // in loop if getrole() === "Intern" then
-    // create intern html string
-    // append intern html to empty setup string
-    // return empty string var
-    // pass this back through the HTML functions
 }
 
 
