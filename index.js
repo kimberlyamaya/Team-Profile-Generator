@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
+const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern')
+const Intern = require('./lib/Intern');
 
 const employeeArr = []
 
@@ -31,6 +32,7 @@ function addManager() {
         message: "Enter Manager's Office Number"   
         },
         {
+        // presented with a menu with the option to add an engineer or an intern or to finish building my team
         type: "list",
         name: "addNewMember",
         message: "What are your next steps?",
@@ -39,41 +41,35 @@ function addManager() {
         ])
         .then(function (answers) {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
-            employees.push(manager)
+            employeeArr.push(manager)
+            console.log(employeeArr)
 
-        if (answers.addNewMember === "Add an Engineer") {
-            console.log("New Engineer added")
-            // call addEngineer function and
-            // create new engineer with class and push into new employeeArr
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
-            employees.push(manager)
-            console.log(employees)
-        }
+            // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+            if (answers.addNewMember === "Add an Engineer") {
+                console.log("New Engineer added")
+                // call addEngineer function and
+                // create new engineer with class and push into new employeeArr
+                //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
+                //employeeArr.push(engineer)
+                //console.log(employeeArr)
+            }
 
-        // last if
-        if (answers.addNewMember === "Finish building my team") {
-            init(employees)
-        }
+            // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+            if (answers.addNewMember === "Add an Intern") {
+                console.log("New Intern added")
+            }
 
-        
+            // finish building my team was selected, the HTML is generated
+            if (answers.addNewMember === "Finish building my team") {
+                init(employeeArr)
+            }
+
         })
-
-
-        // presented with a menu with the option to add an engineer or an intern or to finish building my team
 }
 
 
-
-
-// engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-
-// intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-
-// finish building my team was selected, the HTML is generated
-// call init function
-
 // generate HTML file
-function writeToFile(employees) {
+function writeToFile(employeeArr) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -95,7 +91,7 @@ function writeToFile(employees) {
 function managerHTML (manager) {
     return `
     <div>
-      <h2> ${manager.getName()} </h2>
+      <h2> ${employeeArr[0].name} </h2>
     </div>
     `
 }
@@ -110,8 +106,8 @@ function managerHTML (manager) {
 // return empty string var
 
 
-function init(employees) {
-    fs.writeFile('/dist/team-profile.html', writeToFile(employees), err => {
+function init(employeeArr) {
+    fs.writeFile('./dist/team-profile.html', writeToFile(employeeArr), err => {
         if (err) throw err;
         console.log("you did it")
     })
