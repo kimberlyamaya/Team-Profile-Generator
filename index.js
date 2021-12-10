@@ -32,11 +32,11 @@ function addManager() {
         message: "Enter Manager's Office Number"   
         },
         {
-        // presented with a menu with the option to add an engineer or an intern or to finish building my team
+        // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
         type: "list",
         name: "addNewMember",
         message: "What are your next steps?",
-        choices: ["Add an Engineer", "Add an Intern", "Finish building my team"]
+        choices: ["Add an Engineer", "Add an Intern", "Finished building Team?"]
         }
         ])
         .then(function (answers) {
@@ -47,7 +47,7 @@ function addManager() {
             // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
             if (answers.addNewMember === "Add an Engineer") {
                 // call addEngineer function and
-                addEngineer();
+                addEngineer()
                 // create new engineer with class and push into new employeeArr
                 //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
                 //employeeArr.push(engineer)
@@ -56,11 +56,11 @@ function addManager() {
 
             // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
             if (answers.addNewMember === "Add an Intern") {
-                console.log("New Intern added")
+                addIntern()
             }
 
-            // finish building my team was selected, the HTML is generated
-            if (answers.addNewMember === "Finish building my team") {
+            // Finished building Team? was selected, the HTML is generated
+            if (answers.addNewMember === "Finished building Team?") {
                 init(employeeArr)
             }
 
@@ -94,11 +94,11 @@ function addEngineer() {
         message: "Enter Engineer's GitHub Username"   
         },
         {
-        // presented with a menu with the option to add an engineer or an intern or to finish building my team
+        // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
         type: "list",
         name: "addNewMember",
         message: "What are your next steps?",
-        choices: ["Add an Engineer", "Add an Intern", "Finish building my team"]
+        choices: ["Add an Engineer", "Add an Intern", "Finished building Team?"]
         }
         ])
         .then(function (answers) {
@@ -118,11 +118,71 @@ function addEngineer() {
 
             // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
             if (answers.addNewMember === "Add an Intern") {
-                console.log("New Intern added")
+                addIntern()
             }
 
-            // finish building my team was selected, the HTML is generated
-            if (answers.addNewMember === "Finish building my team") {
+            // Finished building Team? was selected, the HTML is generated
+            if (answers.addNewMember === "Finished building Team?") {
+                init(employeeArr)
+            }
+
+        })
+}
+
+// prompt to enter the engineer's name, employee ID, email address, and github user
+function addIntern() {
+    return inquirer
+        .prompt([
+        {
+        type: "input",
+        name: "name",
+        message: "Enter Intern's Name"
+        },
+        {
+        type: "input",
+        name: "id",
+        message: "Enter Intern's Employee ID"
+        },
+        {
+        type: "input",
+        name: "email",
+        message: "Enter Intern's Email Address"
+        },
+        {
+        type: "input",
+        name: "school",
+        message: "Enter Engineer's School Name"   
+        },
+        {
+        // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
+        type: "list",
+        name: "addNewMember",
+        message: "What are your next steps?",
+        choices: ["Add an Engineer", "Add an Intern", "Finished building Team?"]
+        }
+        ])
+        .then(function (answers) {
+            const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+            employeeArr.push(intern)
+            console.log(employeeArr)
+
+            // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+            if (answers.addNewMember === "Add an Engineer") {
+                // call addEngineer function and
+                addEngineer()
+                // create new engineer with class and push into new employeeArr
+                //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
+                //employeeArr.push(engineer)
+                //console.log(employeeArr)
+            }
+
+            // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+            if (answers.addNewMember === "Add an Intern") {
+                addIntern()
+            }
+
+            // Finished building Team? was selected, the HTML is generated
+            if (answers.addNewMember === "Finished building Team?") {
                 init(employeeArr)
             }
 
