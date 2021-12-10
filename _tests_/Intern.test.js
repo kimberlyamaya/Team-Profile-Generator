@@ -6,6 +6,12 @@ test("Can set school via constructor argumemt", () => {
     expect(e.school).toBe(testValue)
 })
 
+test("Can set role via constructor argument", () => {
+    const testValue = "Intern"
+    const e = new Intern("Foo", 1, "test@test.com", "UCDavis", testValue)
+    expect(e.role).toBe(testValue)
+})
+
 test("getSchool() should return school", () => {
     const testValue = "UCDavis"
     const e = new Intern("Foo", 1, "test@test.com", testValue)
