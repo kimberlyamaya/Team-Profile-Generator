@@ -5,6 +5,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const employeeArr = []
+const employeeStr = ""
 
 
 // prompt to enter the team manager’s name, employee ID, email address, and office number
@@ -200,62 +201,106 @@ function writeToFile(employeeArr) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Team Profile Generator</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Team-Profile-Generator</h1>
+        <Header class="p-3 mb-2 bg-secondary text-light d-flex justify-content-center align-items-center" style="height: 150px;">
+        <h1>Team Profile Generator</h1>
+        </Header>   
+        
+        <div class="row pt-3 justify-content-center">
+    
+            <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
+                <div class="card-header bg-primary text-light">
+                    <h4>${employeeArr[0].name}</h4>
+                    <h5><span>Image ${employeeArr[0].role}</span></h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul class="card-text list-unstyled">
+                        <li><strong>ID: </strong>${employeeArr[0].id}</li>
+                        <li><strong>Email: </strong>${employeeArr[0].email}</li>
+                        <li><strong>Office Number: </strong>${employeeArr[0].officeNumber}</li>
+                    </ul>
+                </div>
+            </div>
+    
+            ${renderEngineer()}
 
-        ${managerHTML()}
+            ${renderIntern()}
+    
+        </div>  
+        
+        <Footer class="p-3 mb-2 text-secondary">
+            <h6><span>Team Profile Generator created by : <a href="https://github.com/kimberlyamaya"><u>Kimberly Amaya</u></a></span></h3>
+        </Footer>  
+    
     </body>
     </html>`
-
 }
 
-//
-function managerHTML (manager) {
-    renderEmployee()
-    return `
-    <div>
-      <h2> ${employeeArr[0].name} </h2>
-    </div>
-    `
-}
 
-// function render employee
-function renderEmployee () {
-    // before loop create empty string var
-    const renderEmployee = ""
+function renderEngineer () {
+    // before loop create empty string var // moved to top of file
     // start loop on 1
     for (i = 1; i < employeeArr.length; i++) {
         // in loop if getrole() === "Engineer" then 
         if (employeeArr[i].role === "Engineer") {
             // create engineer html string
-            const renderEngineer = `
-            <div>
-            <h2> ${employeeArr[i].name} </h2>
-            </div>
-            `
-            console.log(`engineer = ${employeeArr[i].name}`)
+            const engineerHTML = `
+            <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
+                <div class="card-header bg-primary text-light">
+                    <h4>${employeeArr[i].name}</h4>
+                    <h5><span>Image ${employeeArr[i].role}</span></h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul class="card-text list-unstyled">
+                        <li><strong>ID: </strong>${employeeArr[i].id}</li>
+                        <li><strong>Email: </strong>${employeeArr[i].email}</li>
+                        <li><strong>GitHub: </strong>${employeeArr[i].gitHubUser}</li>
+                    </ul>
+                </div>
+            </div>`
             // append intern html to empty setup string
+            //renderEngineer.append(employeeStr)
             // return empty string var
-            // pass this back through the HTML functions
-        }
-        
-        // in loop if getrole() === "Intern" then
-        if (employeeArr[i].role === "Intern") {
-            // create intern html string
-            const renderIntern = `
-            <div>
-            <h2> ${employeeArr[i].name} </h2>
-            </div>
-            `
-            console.log(`intern = ${employeeArr[i].name}`)
-            // append intern html to empty setup string
-            // return empty string var
+            return engineerHTML
             // pass this back through the HTML functions
         }
     }
-}
+}   
+
+
+function renderIntern () {
+    // before loop create empty string var // moved to top of file
+    // start loop on 1
+    for (i = 1; i < employeeArr.length; i++) {
+        // in loop if getrole() === "Intern" then 
+        if (employeeArr[i].role === "Intern") {
+            // create engineer html string
+            const internHTML = `
+            <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
+                <div class="card-header bg-primary text-light">
+                    <h4>${employeeArr[i].name}</h4>
+                    <h5><span>Image ${employeeArr[i].role}</span></h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul class="card-text list-unstyled">
+                        <li><strong>ID: </strong>${employeeArr[i].id}</li>
+                        <li><strong>Email: </strong>${employeeArr[i].email}</li>
+                        <li><strong>School: </strong>${employeeArr[i].school}</li>
+                    </ul>
+                </div>
+            </div>`
+            // append intern html to empty setup string
+            // renderEngineer.append(employeeStr)
+            // return empty string var
+            return internHTML
+            // pass this back through the HTML functions
+        }
+    }
+}       
+
 
 
 function init(employeeArr) {
