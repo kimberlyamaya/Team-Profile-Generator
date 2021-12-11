@@ -5,7 +5,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const employeeArr = []
-const employeeStr = ""
+//const employeeStr = ""
 
 
 // prompt to enter the team manager’s name, employee ID, email address, and office number
@@ -242,6 +242,7 @@ function writeToFile(employeeArr) {
 
 function renderEngineer () {
     // before loop create empty string var // moved to top of file
+    var engineerStr = ""
     // start loop on 1
     for (i = 1; i < employeeArr.length; i++) {
         // in loop if getrole() === "Engineer" then 
@@ -261,23 +262,24 @@ function renderEngineer () {
                     </ul>
                 </div>
             </div>`
-            // append intern html to empty setup string
-            //renderEngineer.append(employeeStr)
-            // return empty string var
-            return engineerHTML
-            // pass this back through the HTML functions
+            // append engineer html to empty setup string
+            engineerStr = engineerStr + engineerHTML
         }
     }
+    // return empty string var
+    return engineerStr 
+    // pass this back through the HTML functions
 }   
 
 
 function renderIntern () {
     // before loop create empty string var // moved to top of file
+    var internStr = ""
     // start loop on 1
     for (i = 1; i < employeeArr.length; i++) {
         // in loop if getrole() === "Intern" then 
         if (employeeArr[i].role === "Intern") {
-            // create engineer html string
+            // create intern html string
             const internHTML = `
             <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
                 <div class="card-header bg-primary text-light">
@@ -290,15 +292,18 @@ function renderIntern () {
                         <li><strong>Email: </strong>${employeeArr[i].email}</li>
                         <li><strong>School: </strong>${employeeArr[i].school}</li>
                     </ul>
-                </div>
+                </div>  
             </div>`
+
             // append intern html to empty setup string
-            // renderEngineer.append(employeeStr)
-            // return empty string var
-            return internHTML
-            // pass this back through the HTML functions
+            internStr = internStr + internHTML  
+
         }
     }
+    // return empty string var
+    return internStr
+    // pass this back through the HTML functions
+    
 }       
 
 
