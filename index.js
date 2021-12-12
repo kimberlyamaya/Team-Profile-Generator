@@ -41,16 +41,11 @@ function addManager() {
         .then(function (answers) {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber, "Manager")
             employeeArr.push(manager)
-            console.log(employeeArr)
 
             // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
             if (answers.addNewMember === "Add an Engineer") {
                 // call addEngineer function and
                 addEngineer()
-                // create new engineer with class and push into new employeeArr
-                //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
-                //employeeArr.push(engineer)
-                //console.log(employeeArr)
             }
 
             // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
@@ -101,18 +96,14 @@ function addEngineer() {
         }
         ])
         .then(function (answers) {
+            // create new engineer with class and push into new employeeArr
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser, "Engineer")
             employeeArr.push(engineer)
-            console.log(employeeArr)
 
             // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
             if (answers.addNewMember === "Add an Engineer") {
                 // call addEngineer function and
                 addEngineer()
-                // create new engineer with class and push into new employeeArr
-                //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
-                //employeeArr.push(engineer)
-                //console.log(employeeArr)
             }
 
             // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
@@ -161,18 +152,14 @@ function addIntern() {
         }
         ])
         .then(function (answers) {
+            // create new intern with class and push into new employeeArr
             const intern = new Intern(answers.name, answers.id, answers.email, answers.school, "Intern")
             employeeArr.push(intern)
-            console.log(employeeArr)
 
             // engineer option was selected then prompt to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
             if (answers.addNewMember === "Add an Engineer") {
                 // call addEngineer function and
                 addEngineer()
-                // create new engineer with class and push into new employeeArr
-                //const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
-                //employeeArr.push(engineer)
-                //console.log(employeeArr)
             }
 
             // intern option was selected then prompt to enter the intern’s name, ID, email, and school, and I am taken back to the menu
@@ -231,11 +218,11 @@ function writeToFile(employeeArr) {
         <Footer class="p-3 mb-2 text-secondary">
             <h6><span>Team Profile Generator created by : <a href="https://github.com/kimberlyamaya"><u>Kimberly Amaya</u></a></span></h3>
         </Footer>  
+
     
     </body>
     </html>`
 }
-
 
 function renderEngineer () {
     // before loop create empty string var // moved to top of file
@@ -255,7 +242,7 @@ function renderEngineer () {
                     <ul class="card-text list-unstyled">
                         <li><strong>ID: </strong>${employeeArr[i].id}</li>
                         <li class = "pt-3"><strong>Email: </strong><u><a href = "mailto: ${employeeArr[i].email}">${employeeArr[i].email}</a></u></li>
-                        <li class = "pt-3"><strong>GitHub: </strong><u><a href = "https://github.com/${employeeArr[i].gitHubUser}">${employeeArr[i].gitHubUser}</a></u></li>
+                        <li class = "pt-3"><strong>GitHub: </strong><u><a href = "https://github.com/${employeeArr[i].gitHubUser}" target="_blank">${employeeArr[i].gitHubUser}</a></u></li>
                     </ul>
                 </div>
             </div>`
@@ -267,7 +254,6 @@ function renderEngineer () {
     return engineerStr 
     // pass this back through the HTML functions
 }   
-
 
 function renderIntern () {
     // before loop create empty string var // moved to top of file
@@ -301,14 +287,14 @@ function renderIntern () {
     return internStr
     // pass this back through the HTML functions
     
-}       
+}
+
 
 
 
 function init(employeeArr) {
     fs.writeFile('./dist/team-profile.html', writeToFile(employeeArr), err => {
         if (err) throw err;
-        console.log("you did it")
     })
 }
 
