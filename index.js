@@ -3,7 +3,6 @@ const fs = require("fs");
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const TeamName = require('./lib/TeamName')
 
 const employeeArr = []
 
@@ -101,7 +100,7 @@ function addEngineer() {
         choices: ["Add an Engineer", "Add an Intern", "Finished building Team?"]
         }
         ])
-        .then(function () {
+        .then(function (answers) {
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser, "Engineer")
             employeeArr.push(engineer)
             console.log(employeeArr)
@@ -200,6 +199,7 @@ function writeToFile(employeeArr) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Team Profile Generator</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
     <Header class="p-3 mb-2 bg-secondary text-light d-flex justify-content-center align-items-center" style="height: 150px;">
@@ -211,13 +211,13 @@ function writeToFile(employeeArr) {
             <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
                 <div class="card-header bg-primary text-light">
                     <h4>${employeeArr[0].name}</h4>
-                    <h5><span>Image ${employeeArr[0].role}</span></h5>
+                    <h5><span><i class="material-icons">perm_identity</i> ${employeeArr[0].role}</span></h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul class="card-text list-unstyled">
                         <li><strong>ID: </strong>${employeeArr[0].id}</li>
-                        <li><strong>Email: </strong>${employeeArr[0].email}</li>
-                        <li><strong>Office Number: </strong>${employeeArr[0].officeNumber}</li>
+                        <li class = "pt-3"><strong>Email: </strong><u><a href = "mailto: ${employeeArr[0].email}">${employeeArr[0].email}</a></u></li>
+                        <li class = "pt-3"><strong>Office Number: </strong>${employeeArr[0].officeNumber}</li>
                     </ul>
                 </div>
             </div>
@@ -249,13 +249,13 @@ function renderEngineer () {
             <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
                 <div class="card-header bg-primary text-light">
                     <h4>${employeeArr[i].name}</h4>
-                    <h5><span>Image ${employeeArr[i].role}</span></h5>
+                    <h5><span><i class="material-icons">perm_identity</i> ${employeeArr[i].role}</span></h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul class="card-text list-unstyled">
                         <li><strong>ID: </strong>${employeeArr[i].id}</li>
-                        <li><strong>Email: </strong>${employeeArr[i].email}</li>
-                        <li><strong>GitHub: </strong>${employeeArr[i].gitHubUser}</li>
+                        <li class = "pt-3"><strong>Email: </strong><u><a href = "mailto: ${employeeArr[i].email}">${employeeArr[i].email}</a></u></li>
+                        <li class = "pt-3"><strong>GitHub: </strong><u><a href = "https://github.com/${employeeArr[i].gitHubUser}">${employeeArr[i].gitHubUser}</a></u></li>
                     </ul>
                 </div>
             </div>`
@@ -281,13 +281,13 @@ function renderIntern () {
             <div class="card border-primary mr-3 ml-3 col-3 shadow p-3 mb-5 rounded" style="max-width: 18rem; background-color: rgba(245,245,245);"> 
                 <div class="card-header bg-primary text-light">
                     <h4>${employeeArr[i].name}</h4>
-                    <h5><span>Image ${employeeArr[i].role}</span></h5>
+                    <h5><span><i class="material-icons">perm_identity</i> ${employeeArr[i].role}</span></h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul class="card-text list-unstyled">
                         <li><strong>ID: </strong>${employeeArr[i].id}</li>
-                        <li><strong>Email: </strong>${employeeArr[i].email}</li>
-                        <li><strong>School: </strong>${employeeArr[i].school}</li>
+                        <li class = "pt-3"><strong>Email: </strong><u><a href = "mailto: ${employeeArr[i].email}">${employeeArr[i].email}</a></u></li>
+                        <li class = "pt-3"><strong>School: </strong>${employeeArr[i].school}</li>
                     </ul>
                 </div>  
             </div>`
