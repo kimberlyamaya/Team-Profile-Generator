@@ -3,10 +3,9 @@ const fs = require("fs");
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const TeamName = require('./lib/TeamName')
 
 const employeeArr = []
-//const employeeStr = ""
-
 
 // prompt to enter the team manager’s name, employee ID, email address, and office number
 function addManager() {
@@ -102,7 +101,7 @@ function addEngineer() {
         choices: ["Add an Engineer", "Add an Intern", "Finished building Team?"]
         }
         ])
-        .then(function (answers) {
+        .then(function () {
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser, "Engineer")
             employeeArr.push(engineer)
             console.log(employeeArr)
@@ -191,8 +190,6 @@ function addIntern() {
 }
 
 
-
-
 // generate HTML file
 function writeToFile(employeeArr) {
     return `<!DOCTYPE html>
@@ -205,9 +202,9 @@ function writeToFile(employeeArr) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <Header class="p-3 mb-2 bg-secondary text-light d-flex justify-content-center align-items-center" style="height: 150px;">
-        <h1>Team Profile Generator</h1>
-        </Header>   
+    <Header class="p-3 mb-2 bg-secondary text-light d-flex justify-content-center align-items-center" style="height: 150px;">
+        <h1>My Team</h1>
+    </Header>
         
         <div class="row pt-3 justify-content-center">
     
@@ -314,5 +311,6 @@ function init(employeeArr) {
         console.log("you did it")
     })
 }
+
 
 addManager();
