@@ -13,22 +13,54 @@ function addManager() {
         {
         type: "input",
         name: "name",
-        message: "Enter Manager's Name"
+        message: "Enter Manager's Name",
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log ("Please enter the manager's name!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "id",
-        message: "Enter Manager's Employee ID"
+        message: "Enter Manager's Employee ID",
+        validate: idInput => {
+            if (idInput) {
+                return true;
+            } else {
+                console.log ("Please enter the manager's employee id!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "email",
-        message: "Enter Manager's Email Address"
+        message: "Enter Manager's Email Address",
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log ("Please enter the manager's email address!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "officeNumber",
-        message: "Enter Manager's Office Number"   
+        message: "Enter Manager's Office Number", 
+        validate: officeNumberInput => {
+            if (officeNumberInput) {
+                return true;
+            } else {
+                console.log ("Please enter the manager's office number!");
+                return false; 
+                }
+            }
         },
         {
         // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
@@ -70,22 +102,54 @@ function addEngineer() {
         {
         type: "input",
         name: "name",
-        message: "Enter Engineer's Name"
+        message: "Enter Engineer's Name",
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log ("Please enter the engineer's name!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "id",
-        message: "Enter Engineer's Employee ID"
+        message: "Enter Engineer's Employee ID",
+        validate: idInput => {
+            if (idInput) {
+                return true;
+            } else {
+                console.log ("Please enter the engineer's employee id!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "email",
-        message: "Enter Engineer's Email Address"
+        message: "Enter Engineer's Email Address",
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log ("Please enter the engineer's email address!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "gitHubUser",
-        message: "Enter Engineer's GitHub Username"   
+        message: "Enter Engineer's GitHub Username",
+        validate: gitHubInput => {
+            if (gitHubInput) {
+                return true;
+            } else {
+                console.log ("Please enter the engineer's github username!");
+                return false; 
+                }
+            }
         },
         {
         // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
@@ -126,22 +190,54 @@ function addIntern() {
         {
         type: "input",
         name: "name",
-        message: "Enter Intern's Name"
+        message: "Enter Intern's Name",
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log ("Please enter the intern's name!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "id",
-        message: "Enter Intern's Employee ID"
+        message: "Enter Intern's Employee ID",
+        validate: idInput => {
+            if (idInput) {
+                return true;
+            } else {
+                console.log ("Please enter the intern's employee id!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "email",
-        message: "Enter Intern's Email Address"
+        message: "Enter Intern's Email Address",
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log ("Please enter the intern's email address!");
+                return false; 
+                }
+            }
         },
         {
         type: "input",
         name: "school",
-        message: "Enter Intern's School Name"   
+        message: "Enter Intern's School Name",
+        validate: schoolInput => {
+            if (schoolInput) {
+                return true;
+            } else {
+                console.log ("Please enter the intern's school name!");
+                return false; 
+                }
+            }
         },
         {
         // presented with a menu with the option to add an engineer or an intern or to Finished building Team?
