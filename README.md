@@ -26,6 +26,8 @@
   7. If you choose to be finished building team then the prompts will end the the team-profile.html will be generated based on the data entered 
   8. Find the newly generated team-profile.html file to view what has been generated
 
+  ![team-profile.html](assets/images/team-profile.png)
+
   [Click here to see walk-thru video](URLtowalkthruvideo)
 
   ## Contributing  
